@@ -1,6 +1,6 @@
 'use client';
 import { Providers } from "@/components/Providers";
-import { SidebarDemo2 } from "@/components/side2";
+import { SidebarDemo2 } from "@/components/sidebar";
 import { usePathname } from "next/navigation";
 import { Toaster } from "react-hot-toast";
 
