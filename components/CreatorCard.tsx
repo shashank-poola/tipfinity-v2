@@ -2,19 +2,12 @@
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { motion } from 'framer-motion';
+import { Creator } from "@/types";
 
 export function CreatorCard({
   creator
 }: {
-  creator:  {
-    name: string;
-    publicKey: string;
-    profileImage: string;
-    email: string;
-    bio: string;
-    id: string;
-    userId: string;
-  };
+  creator: Creator;
 })
  {
   const router = useRouter();

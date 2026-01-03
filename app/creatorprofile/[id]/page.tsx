@@ -9,12 +9,13 @@ import { Connection, Transaction, SystemProgram, PublicKey, LAMPORTS_PER_SOL } f
 import toast from "react-hot-toast";
 import { SendButton } from "@/components/SendButton";
 import { ArrowLeftIcon, MoveLeftIcon } from "lucide-react";
+import { Creator, User } from "@/types";
 
 
 export default function CreatorProfile() {
-    const [creator, setCreator] = useState<{ id: string; userId: string; name: string; publicKey: string; email: string; bio: string; profileImage: string; superCost: string; }>();
+    const [creator, setCreator] = useState<Creator>();
     const [message, setMessage] = useState("");
-    const [user, setUser] = useState<{ id: string; PublicKey: string } | null>(null);
+    const [user, setUser] = useState<User | null>(null);
     const params = useParams();
     const creatorName = decodeURIComponent(params?.id as string);
     console.log(creatorName);

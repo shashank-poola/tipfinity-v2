@@ -13,6 +13,7 @@ import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { useWallet } from "@solana/wallet-adapter-react";
 import axios from "axios";
+import { Creator } from "@/types";
 
 
 export function SidebarDemo2({children}:any) {
@@ -22,7 +23,7 @@ export function SidebarDemo2({children}:any) {
     getCreatorFromDb();
   }, [wallet?.adapter.publicKey]);
 
-  const [creator, setCreator] = useState<{ id: string; userId: string; name: string; publicKey: string; email: string; bio: string; profileImage: string; superCost: string; } | null>(null);
+  const [creator, setCreator] = useState<Creator | null>(null);
 
   async function getCreatorFromDb() {
     const res = await axios.post(`/api/getcreator`, { publicKey: wallet?.adapter.publicKey?.toString() });
@@ -86,10 +87,10 @@ export function SidebarDemo2({children}:any) {
 export const Logo = () => (
   <Link href="#" className="relative z-20 flex items-center space-x-2 py-1 text-2xl font-normal text-white">
     <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="font-bold">
-      Super
+      Tip
     </motion.span>
     <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="font-bold text-[#FF4D4D]">
-      DM
+      finity
     </motion.span>
   </Link>
 );

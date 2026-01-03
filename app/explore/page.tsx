@@ -6,21 +6,13 @@ import { redirect } from "next/navigation";
 import { CreatorCard } from "@/components/CreatorCard";
 import axios from "axios";
 import { SearchIcon } from "lucide-react";
+import { Creator, User } from "@/types";
 
 export default function Explore (){
 
-    interface Creator {
-    name: string;
-    publicKey: string;
-    profileImage: string;
-    email: string;
-    bio: string;
-    id: string;
-    userId: string;
-  }
   const[Creators, setCreators] = useState<Creator[]>([]);
   const { wallet, connected} = useWallet();
-  const [user, setUser] = useState<{ id: string; PublicKey: string } | null>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
 
       useEffect(() => {
