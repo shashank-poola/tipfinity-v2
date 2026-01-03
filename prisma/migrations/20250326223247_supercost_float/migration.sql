@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "CreatorProfile" ALTER COLUMN "superCost" SET DEFAULT 0,
+ALTER COLUMN "superCost" SET DATA TYPE DOUBLE PRECISION;
