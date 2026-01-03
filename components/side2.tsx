@@ -85,12 +85,13 @@ export function SidebarDemo2({children}:any) {
 }
 
 export const Logo = () => (
-  <Link href="#" className="relative z-20 flex items-center space-x-2 py-1 text-2xl font-normal text-white">
-    <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="font-bold">
-      Tip
-    </motion.span>
-    <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="font-bold text-[#FF4D4D]">
-      finity
-    </motion.span>
+  <Link href="#" className="relative z-20 flex items-center py-1">
+    <motion.img 
+      src="/logo/whitelogo.png" 
+      alt="Tipfinity" 
+      className="h-12 w-25"
+      initial={{ opacity: 0 }} 
+      animate={{ opacity: 1 }}
+    />
   </Link>
 );

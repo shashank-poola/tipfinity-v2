@@ -31,8 +31,7 @@ export default function Landing() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5 , ease: "easeInOut" }}
             >
-              <h1 className="text-4xl md:text-6xl font-extrabold mr-2 text-tipfinity-dark">Tip</h1>
-              <h1 className="text-4xl md:text-6xl font-extrabold text-tipfinity-primary">finity</h1>
+              <img src="/logo/whitelogo.png" alt="Tipfinity" className="h-16 md:h-24 w-auto" />
             </motion.div>
       
             <motion.div 
@@ -99,15 +98,6 @@ export default function Landing() {
       
             </div>
           </div>
-      
-          {/* Footer */}
-          <footer className="w-full py-4 flex justify-center bg-transparent mb-6">
-            <a href="https://x.com/Alxn787" target="_blank" className="text-white/60 text-sm">
-              <div className="flex items-center">
-                <span>Built by alxn787</span>
-              </div>
-            </a>
-          </footer>
         </div>
       );
       
