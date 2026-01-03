@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
         }
 
         const { data, error } = await resend.emails.send({
-            from: 'Tipfinity <onboarding@tipfinity.xyz>',
+            from: 'Tipfinity <noreply@onboarding.tipfinity.xyz>',
             to: [email],
             subject: 'New Tipfinity Message',
             react:await SuperchatEmailTemplate({message,name}),

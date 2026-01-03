@@ -81,7 +81,7 @@ export default function CreatorProfile() {
     }
     async function sendMessage(txSignature: string) {
         try {
-            console.log("🔍 Sending data to /api/send:", {
+            console.log("Sending data to /api/send:", {
                 email: creator?.email,
                 name: creator?.name,
                 message: message,
