@@ -1,4 +1,4 @@
-import {prisma} from "@/app/db";
+import {prisma} from "@/lib/db";
 
 export async function POST(req: Request) {
     const { name, email, bio, profileImage, superCost, publicKey } = await req.json();

@@ -1,4 +1,4 @@
-import { prisma } from "@/app/db";
+import { prisma } from "@/lib/db";
 
 export async function GET() {
     const creators = await prisma.creatorProfile.findMany();
