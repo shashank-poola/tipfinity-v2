@@ -14,19 +14,19 @@ export default function HowItWorks() {
       number: "1",
       title: "Connect Your Wallet",
       description: "Connect your Solana wallet to get started. Create your creator profile and set your tip amount.",
-      icon: <Wallet className="w-12 h-12 text-green-500" />
+      icon: <Wallet className="w-12 h-12 text-tipfinity-primary" />
     },
     {
       number: "2",
       title: "Share Your Link",
       description: "Share your unique tipfinity.xyz link with your fans on social media, streams, or content platforms.",
-      icon: <Send className="w-12 h-12 text-green-500" />
+      icon: <Send className="w-12 h-12 text-tipfinity-primary" />
     },
     {
       number: "3",
       title: "Receive Tips Instantly",
       description: "Get instant notifications when fans send you tips. Withdraw your earnings anytime directly to your wallet.",
-      icon: <TrendingUp className="w-12 h-12 text-green-500" />
+      icon: <TrendingUp className="w-12 h-12 text-tipfinity-primary" />
     }
   ];
 
@@ -61,7 +61,7 @@ export default function HowItWorks() {
               transition={{ duration: 0.5, delay: index * 0.2 }}
             >
               {/* Step Number */}
-              <div className="absolute -top-4 -left-4 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-black font-bold text-xl">
+              <div className="absolute -top-4 -left-4 w-12 h-12 bg-tipfinity-primary rounded-full flex items-center justify-center text-white font-bold text-xl">
                 {step.number}
               </div>
 

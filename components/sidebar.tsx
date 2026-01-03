@@ -1,14 +1,14 @@
 "use client";
 /* eslint-disable*/
 import React, { useEffect, useState } from "react";
-import { Sidebar, SidebarBody, SidebarLink } from "@/components/ui/sidebar";
+import { Sidebar, SidebarBody, SidebarLink, useSidebar } from "@/components/ui/sidebar";
 import {
   IconUserBolt,
 } from "@tabler/icons-react";
 import { motion } from "motion/react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { PlusIcon, SearchIcon } from "lucide-react";
+import { PlusIcon, SearchIcon, Menu } from "lucide-react";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { useWallet } from "@solana/wallet-adapter-react";
@@ -54,7 +54,7 @@ export function SidebarDemo2({children}:any) {
       <Sidebar>
         <SidebarBody className="justify-between gap-10">
           <div className="flex flex-1 flex-col overflow-x-hidden overflow-y-auto">
-            <Logo />
+            <LogoWithToggle />
             <div className="mt-8 flex flex-col gap-2">
               {links.map((link, idx) => (
                 <button key={idx} onClick={() => router.push(link.href)}>
@@ -95,3 +95,28 @@ export const Logo = () => (
     />
   </Link>
 );
+
+export const LogoWithToggle = () => {
+  const { open, setOpen } = useSidebar();
+  
+  return (
+    <div className="relative z-20 flex items-center justify-between py-1">
+      <Link href="#" className="flex items-center">
+        <motion.img 
+          src="/logo/whitelogo.png" 
+          alt="Tipfinity" 
+          className="h-12 w-25"
+          initial={{ opacity: 0 }} 
+          animate={{ opacity: open ? 1 : 0 }}
+          transition={{ duration: 0.2 }}
+        />
+      </Link>
+      <button 
+        onClick={() => setOpen(!open)}
+        className="hidden md:flex p-2 rounded-lg hover:bg-neutral-800 transition-colors"
+      >
+        <Menu className="h-5 w-5 text-white" />
+      </button>
+    </div>
+  );
+};

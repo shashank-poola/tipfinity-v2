@@ -56,7 +56,8 @@ export default function ClaimSection() {
           </div>
           <button 
             onClick={handleClaim}
-            className="ml-auto mr-2 bg-green-500 hover:bg-green-600 text-white rounded-full p-4 transition-colors"
+            disabled={!username.trim()}
+            className="ml-auto mr-2 bg-tipfinity-primary hover:bg-tipfinity-primary/90 text-white rounded-full p-4 transition-colors disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-tipfinity-primary"
           >
             <ArrowRight className="w-6 h-6" />
           </button>

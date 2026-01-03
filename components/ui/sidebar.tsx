@@ -33,7 +33,7 @@ export const SidebarProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
   return (
     <SidebarContext.Provider value={{ open, setOpen }}>
@@ -60,16 +60,27 @@ export const DesktopSidebar = ({
   children,
   ...props
 }: React.ComponentProps<typeof motion.div>) => {
+  const { open, setOpen } = useSidebar();
+  
   return (
-    <motion.div
-      className={cn(
-        "h-full px-4 py-4 hidden md:flex md:flex-col bg-neutral-100 dark:bg-neutral-800 w-[260px] shrink-0",
-        className
-      )}
-      {...props}
-    >
-      {children}
-    </motion.div>
+    <>
+      <motion.div
+        className={cn(
+          "h-full px-4 py-4 hidden md:flex md:flex-col bg-black w-[260px] shrink-0",
+          className
+        )}
+        animate={{
+          width: open ? "260px" : "80px"
+        }}
+        transition={{
+          duration: 0.3,
+          ease: "easeInOut"
+        }}
+        {...props}
+      >
+        {children}
+      </motion.div>
+    </>
   );
 };
 
@@ -83,13 +94,13 @@ export const MobileSidebar = ({
     <>
       <div
         className={cn(
-          "h-10 px-4 py-4 flex flex-row md:hidden items-center justify-between bg-neutral-100 dark:bg-neutral-800 w-full"
+          "h-10 px-4 py-4 flex flex-row md:hidden items-center justify-between bg-black w-full"
         )}
         {...props}
       >
         <div className="flex justify-end z-20 w-full">
           <IconMenu2
-            className="text-neutral-800 dark:text-neutral-200"
+            className="text-white"
             onClick={() => setOpen(!open)}
           />
         </div>
@@ -104,12 +115,12 @@ export const MobileSidebar = ({
                 ease: "easeInOut",
               }}
               className={cn(
-                "fixed h-full w-full inset-0 bg-white dark:bg-neutral-900 p-10 z-[100] flex flex-col justify-between",
+                "fixed h-full w-full inset-0 bg-black p-10 z-[100] flex flex-col justify-between",
                 className
               )}
             >
               <div
-                className="absolute right-10 top-10 z-50 text-neutral-800 dark:text-neutral-200"
+                className="absolute right-10 top-10 z-50 text-white"
                 onClick={() => setOpen(!open)}
               >
                 <IconX />
@@ -132,6 +143,8 @@ export const SidebarLink = ({
   className?: string;
   props?: LinkProps;
 }) => {
+  const { open } = useSidebar();
+  
   return (
     <Link
       href={link.href}
@@ -142,7 +155,16 @@ export const SidebarLink = ({
       {...props}
     >
       {link.icon}
-      <span className="text-neutral-700 dark:text-neutral-200 text-md">{link.label}</span>
+      <motion.span 
+        className="text-white text-md whitespace-nowrap"
+        animate={{
+          opacity: open ? 1 : 0,
+          width: open ? "auto" : 0
+        }}
+        transition={{ duration: 0.2 }}
+      >
+        {link.label}
+      </motion.span>
     </Link>
   );
 };
