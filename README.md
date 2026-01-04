@@ -27,16 +27,33 @@ Tipfinity is a web2 tipping platform, built on Solana that enables creators to r
 
 ---
 
+![tipfinitydemo](public/demo.png)
+
+
 ## 🛠️ Tech Stack
 
-- **Frontend**: Next.js 16, React 19, TypeScript, Tailwind CSS
+- **Frontend**: Next.js 16, ReactJS, TypeScript, Tailwind CSS
 - **Blockchain**: Solana Web3.js, Wallet Adapter
-- **Backend**: Next.js API Routes, Prisma ORM
+- **Backend**: Next.js API Routes, Prisma
 - **Database**: PostgreSQL
 - **Email**: Resend API
 
----
+## 📁 Project Structure
 
+```
+tipfinity/
+├── app/              # Next.js App Router
+│   ├── api/         # API endpoints
+│   ├── creator/     # Creator setup page
+│   ├── explore/     # Browse creators
+│   └── profile/     # User profile
+├── components/       # React components
+├── prisma/          # Database schema & migrations
+├── lib/             # Utilities
+└── public/          # Static assets
+```
+
+---
 ## 📦 Quick Start
 
 ### Prerequisites
@@ -91,32 +108,7 @@ Visit [http://localhost:3000](http://localhost:3000) 🎉
 3. **Write a message** and confirm the transaction
 4. **Done!** Your tip arrives instantly and the creator sees your message
 
-
-## 📁 Project Structure
-
-```
-tipfinity/
-├── app/              # Next.js App Router
-│   ├── api/         # API endpoints
-│   ├── creator/     # Creator setup page
-│   ├── explore/     # Browse creators
-│   └── profile/     # User profile
-├── components/       # React components
-├── prisma/          # Database schema & migrations
-├── lib/             # Utilities
-└── public/          # Static assets
-```
-
 ---
-
-## 🌐 Environment Variables
-
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `DATABASE_URL` | PostgreSQL connection string | Yes |
-| `RESEND_API_KEY` | Email API key from [resend.com](https://resend.com/) | Yes |
-| `NEXT_PUBLIC_SOLANA_NETWORK` | `devnet` or `mainnet-beta` | No (defaults to devnet) |
-
 
 ## 👨‍💻 Author
 
