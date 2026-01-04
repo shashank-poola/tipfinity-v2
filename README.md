@@ -13,7 +13,7 @@
 
 ## 🚀 What is Tipfinity?
 
-Tipfinity is a web2 tipping platform, built on Solana that enables creators to receive instant tips with near-zero fees.no waiting periods—tips arrive directly in your wallet in under 1 second.
+Tipfinity is a web3 tipping platform, built on Solana that enables creators to receive instant tips with near-zero fees.no waiting periods—tips arrive directly in your wallet in under 1 second.
 
 ### Why Tipfinity?
 
