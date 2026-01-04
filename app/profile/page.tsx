@@ -25,12 +25,14 @@ export default function Profile() {
     const [biggestSuperFan, setBiggestSuperFan] = useState<string | null>(null);
     const [isOpen, setIsOpen] = useState(false);
     const [activeTab, setActiveTab] = useState<"earnings" | "received" | "sent" | "superfan" | null>(null);
+    const [imageError, setImageError] = useState(false);
     const router = useRouter();
 
     useEffect(() => {
         if (!connected) {
             router.push("/");
         } else {
+            setImageError(false); // Reset image error when loading profile
             getUserFromDb();
         }
     }, [connected, router]);
@@ -92,8 +94,12 @@ export default function Profile() {
                             <div className="relative group mb-4">
                                 <div className="absolute inset-0 bg-gradient-to-r from-tipfinity-primary to-purple-600 rounded-xl blur-lg opacity-50 group-hover:opacity-75 transition-opacity"></div>
                                 <img 
-                                    src={creatorProfile?.profileImage || "https://www.jammable.com/cdn-cgi/image/width=3840,quality=25,format=webp/https://imagecdn.voicify.ai/models/7b8e5953-3f47-40a3-9fa6-db2e39aa383c.png"}
+                                    src={imageError || !creatorProfile?.profileImage
+                                        ? `https://ui-avatars.com/api/?name=${encodeURIComponent(creatorProfile?.name || "User")}&size=256&background=2B8CD1&color=fff&bold=true`
+                                        : creatorProfile.profileImage
+                                    }
                                     alt={creatorProfile?.name || "Profile"}
+                                    onError={() => setImageError(true)}
                                     className="relative h-32 w-32 rounded-xl object-cover border-4 border-neutral-800"
                                 />
                             </div>

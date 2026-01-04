@@ -16,6 +16,7 @@ export default function CreatorProfile() {
     const [message, setMessage] = useState("");
     const [tipAmount, setTipAmount] = useState("");
     const [user, setUser] = useState<User | null>(null);
+    const [imageError, setImageError] = useState(false);
     const params = useParams();
     const creatorName = decodeURIComponent(params?.id as string);
     console.log(creatorName);
@@ -26,9 +27,10 @@ export default function CreatorProfile() {
         if (!connected) {
             router.push("/");
         }
+        setImageError(false); // Reset image error when loading new creator
         getCreatorFromDb();
         getuserFromDb();
-    }, [connected, router]);
+    }, [connected, router, creatorName]);
 
     async function getuserFromDb() {
         if (!wallet?.adapter.publicKey) {
@@ -133,8 +135,12 @@ export default function CreatorProfile() {
                     {/* Profile Image */}
                     <div className="flex justify-center mb-2 mt-2">
                         <img 
-                            src={creator.profileImage || "https://www.jammable.com/cdn-cgi/image/width=3840,quality=25,format=webp/https://imagecdn.voicify.ai/models/7b8e5953-3f47-40a3-9fa6-db2e39aa383c.png"}
+                            src={imageError || !creator.profileImage 
+                                ? `https://ui-avatars.com/api/?name=${encodeURIComponent(creator.name)}&size=200&background=2B8CD1&color=fff&bold=true`
+                                : creator.profileImage
+                            }
                             alt={creator.name}
+                            onError={() => setImageError(true)}
                             className="h-20 w-20 rounded-xl object-cover border-2 border-neutral-700"
                         />
                     </div>
