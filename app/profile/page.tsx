@@ -1,11 +1,10 @@
 "use client";
-import { ProfileCard } from "@/components/ui/profilecard";
 import { useWallet } from "@solana/wallet-adapter-react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowLeftIcon, XIcon } from "lucide-react";
+import { XIcon } from "lucide-react";
 
 export default function Profile() {
     const [creatorProfile, setCreatorProfile] = useState<{ 
@@ -35,18 +34,21 @@ export default function Profile() {
             setImageError(false); // Reset image error when loading profile
             getUserFromDb();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [connected, router]);
 
     useEffect(() => {
         if (creatorProfile) {
             getMessages();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [creatorProfile]);
 
     useEffect(() => {
         if (creatorProfile) {
             getEarnings();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [receivedMessages]); 
 
     async function getMessages() {

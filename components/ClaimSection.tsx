@@ -66,7 +66,7 @@ export default function ClaimSection() {
 
       {/* Subtitle */}
       <p className="text-white/50 text-base">
-        Claim your username before it's too late!
+        Claim your username before it&apos;s too late!
       </p>
     </motion.div>
   );

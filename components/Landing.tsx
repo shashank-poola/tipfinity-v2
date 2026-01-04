@@ -1,9 +1,7 @@
 import dynamic from 'next/dynamic';
-import { Button } from './moving-border';
 import { useEffect } from "react";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { useRouter } from "next/navigation";
-import { Mail, Wallet2Icon } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Instrument_Serif } from "next/font/google";
 import Video from './Video';
