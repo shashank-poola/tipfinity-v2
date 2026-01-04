@@ -1,8 +1,6 @@
 <div align="center">
   <img src="./public/logo/whitelogo.png" alt="Tipfinity Logo" width="200"/>
 
-  # Tipfinity
-
   **The fastest way to tip creators on Solana**
 
   [![Next.js](https://img.shields.io/badge/Next.js-16.1-black?logo=next.js)](https://nextjs.org/)
