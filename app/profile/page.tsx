@@ -1,4 +1,5 @@
 "use client";
+
 import { useWallet } from "@solana/wallet-adapter-react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -34,21 +35,21 @@ export default function Profile() {
             setImageError(false); // Reset image error when loading profile
             getUserFromDb();
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        
     }, [connected, router]);
 
     useEffect(() => {
         if (creatorProfile) {
             getMessages();
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        
     }, [creatorProfile]);
 
     useEffect(() => {
         if (creatorProfile) {
             getEarnings();
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        
     }, [receivedMessages]); 
 
     async function getMessages() {

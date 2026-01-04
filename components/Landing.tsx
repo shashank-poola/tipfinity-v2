@@ -77,16 +77,12 @@ export default function Landing() {
             </motion.div>
           </div>
 
-          {/* Video Section */}
           <Video />
 
-          {/* Claim Username Section */}
           <ClaimSection />
 
-          {/* How It Works Section */}
           <HowItWorks />
-
-          {/* Footer */}
+          
           <Footer />
         </div>
       );

@@ -1,5 +1,5 @@
 "use client";
-/* eslint-disable*/
+
 import React, { useEffect, useState } from "react";
 import { Sidebar, SidebarBody, SidebarLink, useSidebar } from "@/components/ui/sidebar";
 import { motion } from "motion/react";

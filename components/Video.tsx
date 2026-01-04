@@ -1,7 +1,39 @@
 'use client';
 import { motion } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
 
 export default function Video() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [hasPlayed, setHasPlayed] = useState(false);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasPlayed) {
+            // Start playing when video comes into view
+            video.play().catch((error) => {
+              console.log('Autoplay prevented:', error);
+            });
+            setHasPlayed(true);
+          }
+        });
+      },
+      {
+        threshold: 0.5, // Play when 50% of video is visible
+      }
+    );
+
+    observer.observe(video);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [hasPlayed]);
+
   return (
     <motion.div
       className="w-full max-w-5xl mx-auto px-4 py-12"
@@ -9,34 +41,24 @@ export default function Video() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: "easeInOut", delay: 0.8 }}
     >
-      <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-gradient-to-br from-neutral-800 to-neutral-900 shadow-2xl border border-neutral-700">
-        {/* Video placeholder - replace with actual video */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center">
-            <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center">
-              <svg
-                className="w-10 h-10 text-white"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </div>
-            <p className="text-white/60 text-lg">Demo Video</p>
-            <p className="text-white/40 text-sm mt-2">See how Tipfinity works</p>
-          </div>
-        </div>
-
-        {/* Add your video here */}
-        {/* <video 
+      <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl border border-neutral-700">
+        {/* Tipfinity Demo Video */}
+        <video 
+          ref={videoRef}
           className="w-full h-full object-cover"
-          autoPlay
           muted
-          loop
           playsInline
+          preload="auto"
+          loop
         >
-          <source src="/demo-video.mp4" type="video/mp4" />
-        </video> */}
+          <source src="/tipfinitydemo.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      {/* Video Caption */}
+      <div className="text-center mt-4">
+        <p className="text-white/70 text-sm">Watch how Tipfinity works</p>
       </div>
     </motion.div>
   );

@@ -1,5 +1,5 @@
 "use client";
-/* eslint-disable */
+
 import { useWallet } from "@solana/wallet-adapter-react";
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
@@ -77,7 +77,6 @@ export default function CreatorProfile() {
         }
 
         try {
-            // DEVNET - Using fake/test SOL
             const connection = new Connection("https://api.devnet.solana.com", "confirmed");
             const transaction = new Transaction().add(
                 SystemProgram.transfer({

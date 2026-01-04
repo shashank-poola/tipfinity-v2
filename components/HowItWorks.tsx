@@ -1,4 +1,5 @@
 'use client';
+
 import { motion } from 'framer-motion';
 import { Instrument_Serif } from "next/font/google";
 import { Wallet, Send, TrendingUp } from 'lucide-react';
