@@ -36,9 +36,9 @@ export default function BecomeACreator() {
     }
 
     return (
-        <div className="flex flex-col items-center justify-center">
-            <h1 className="text-3xl font-bold mb-4">Start your journey as a Creator</h1>
-            <p className="text-white/50 text-lg">Create your profile and start receiving tips.</p>
+        <div className="flex flex-col items-center justify-center min-h-screen px-4">
+            <h1 className="text-3xl font-bold mb-4 text-white">Start your journey as a Creator</h1>
+            <p className="text-white/70 text-lg mb-6">Create your profile and start receiving tips.</p>
             <CreatorInput onsubmit={handleSubmit((formData) => newCreator(formData)) } register={register} />
         </div>
     );

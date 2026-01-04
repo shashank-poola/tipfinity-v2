@@ -2,13 +2,10 @@
 /* eslint-disable*/
 import React, { useEffect, useState } from "react";
 import { Sidebar, SidebarBody, SidebarLink, useSidebar } from "@/components/ui/sidebar";
-import {
-  IconUserBolt,
-} from "@tabler/icons-react";
 import { motion } from "motion/react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { PlusIcon, SearchIcon, Menu } from "lucide-react";
+import { PlusIcon, Search, PanelRightOpen, UserCircle } from "lucide-react";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { useWallet } from "@solana/wallet-adapter-react";
@@ -36,11 +33,11 @@ export function SidebarDemo2({children}:any) {
     );
 
   const links = [
-    { label: "Explore", icon: <SearchIcon className="h-5 w-5" />, page: "explore", href: "/explore" },
-    { label: "Profile", icon: <IconUserBolt className="h-5 w-5" />, page: "profile", href: "/profile" },
+    { label: "Explore", icon: <Search className="h-5 w-5 text-white" />, page: "explore", href: "/explore" },
+    { label: "Profile", icon: <UserCircle className="h-5 w-5 text-white" />, page: "profile", href: "/profile" },
   ]
   const links2 = [
-    { label: "Become a creator", icon: <PlusIcon className="h-5 w-5" />, page: "creator", href: "/creator" }
+    { label: "Become a creator", icon: <PlusIcon className="h-5 w-5 text-white" />, page: "creator", href: "/creator" }
   ]
   const router = useRouter();
 
@@ -115,7 +112,7 @@ export const LogoWithToggle = () => {
         onClick={() => setOpen(!open)}
         className="hidden md:flex p-2 rounded-lg hover:bg-neutral-800 transition-colors"
       >
-        <Menu className="h-5 w-5 text-white" />
+        <PanelRightOpen className="h-5 w-5 text-white" />
       </button>
     </div>
   );

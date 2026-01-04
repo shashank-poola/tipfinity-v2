@@ -2,17 +2,20 @@
 import React from "react";
 
 export function SendButton({ onclick, superCost }: { onclick: () => void; superCost: string; }) {
+  const isDisabled = !superCost || parseFloat(superCost) <= 0;
+  
   return (
     
-    <div >
+    <div className="w-full">
 
 
         <button
-          className="group/btn px-5 py-2 border border-neutral-600 relative block w-full rounded-md bg-gradient-to-br from-tipfinity-primary to-tipfinity-dark font-medium text-white shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset]"
+          className="group/btn px-3 py-1.5 border border-neutral-600 relative block w-full rounded-md bg-gradient-to-br from-tipfinity-primary to-tipfinity-dark font-medium text-white text-xs shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-none transition-all hover:shadow-lg"
           onClick={onclick}
+          disabled={isDisabled}
         >
-          Send ({superCost}) SOL
-          <BottomGradient />
+          {superCost && parseFloat(superCost) > 0 ? `Send ${superCost} SOL` : 'Enter Amount'}
+          {!isDisabled && <BottomGradient />}
         </button>
 
     </div>

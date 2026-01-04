@@ -83,49 +83,58 @@ export default function Profile() {
     }
 
     return (
-        <div className="h-screen flex justify-center">
-            <div className="top-5 left-5 relative  h-8 w-8 rounded-lg hover:bg-neutral-800 flex items-center justify-center" onClick={() => router.back()}>
-                <ArrowLeftIcon className="text-white/70 h-5 w-5" />
-            </div>
+        <div className="min-h-screen flex justify-center py-8 px-4">
             {wallet ? (
                 <div className="flex flex-col items-center w-full max-w-3xl">
-                    <div className="flex justify-center mb-5">
-                        <ProfileCard creator={creatorProfile?.profileImage || "https://www.jammable.com/cdn-cgi/image/width=3840,quality=25,format=webp/https://imagecdn.voicify.ai/models/7b8e5953-3f47-40a3-9fa6-db2e39aa383c.png"} />
+                    {/* Profile Card */}
+                    <div className="bg-neutral-900/80 backdrop-blur-xl border border-neutral-800 rounded-2xl p-6 w-full mb-6 shadow-xl">
+                        <div className="flex flex-col items-center">
+                            <div className="relative group mb-4">
+                                <div className="absolute inset-0 bg-gradient-to-r from-tipfinity-primary to-purple-600 rounded-xl blur-lg opacity-50 group-hover:opacity-75 transition-opacity"></div>
+                                <img 
+                                    src={creatorProfile?.profileImage || "https://www.jammable.com/cdn-cgi/image/width=3840,quality=25,format=webp/https://imagecdn.voicify.ai/models/7b8e5953-3f47-40a3-9fa6-db2e39aa383c.png"}
+                                    alt={creatorProfile?.name || "Profile"}
+                                    className="relative h-32 w-32 rounded-xl object-cover border-4 border-neutral-800"
+                                />
+                            </div>
+
+                            <h1 className="text-2xl font-bold text-white mb-2">{creatorProfile?.name || "Anonymous"}</h1>
+
+                            {creatorProfile?.bio ? (
+                                <p className="text-white/70 text-center max-w-lg">{creatorProfile.bio}</p>
+                            ) : (
+                                <div className="border border-neutral-700 rounded-xl cursor-pointer p-3 hover:bg-tipfinity-primary/10 hover:border-tipfinity-primary mt-2 transition-all" onClick={() => { router.push("/creator") }}>
+                                    <span className="text-white">Become a creator</span>
+                                </div>
+                            )}
+                        </div>
                     </div>
 
-                    <h1 className="text-2xl font-bold">{creatorProfile?.name || "Anonymous"}</h1>
-
-                    {creatorProfile?.bio ? <div className="mt-5">{creatorProfile?.bio}</div> : (
-                        <div className="border border-neutral-800 rounded-xl cursor-pointer p-3 hover:bg-white/10 mt-5" onClick={() => { router.push("/creator") }}>
-                            Become a creator
-                        </div>
-                    )}
-
-                    {/* Buttons for opening modal */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-xl mt-10">
+                    {/* Stats Grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
                         <button
-                            className="bg-tipfinity-dark text-white py-4 px-4 rounded-lg hover:bg-tipfinity-primary transition"
+                            className="bg-neutral-900/80 backdrop-blur-xl border border-neutral-800 text-white py-6 px-6 rounded-xl hover:border-tipfinity-primary hover:bg-tipfinity-primary/10 transition-all shadow-lg group"
                             onClick={() => { setActiveTab("earnings"); setIsOpen(true); }}
                         >
-                            Total Earnings
+                            <div className="text-lg font-semibold group-hover:text-tipfinity-primary transition-colors">Total Earnings</div>
                         </button>
                         <button
-                            className="bg-tipfinity-dark text-white py-4 px-4 rounded-lg hover:bg-tipfinity-primary transition"
+                            className="bg-neutral-900/80 backdrop-blur-xl border border-neutral-800 text-white py-6 px-6 rounded-xl hover:border-tipfinity-primary hover:bg-tipfinity-primary/10 transition-all shadow-lg group"
                             onClick={() => { setActiveTab("received"); setIsOpen(true); }}
                         >
-                           Tips Received 
+                            <div className="text-lg font-semibold group-hover:text-tipfinity-primary transition-colors">Tips Received</div>
                         </button>
                         <button
-                            className="bg-tipfinity-dark text-white py-4 px-4 rounded-lg hover:bg-tipfinity-primary transition"
+                            className="bg-neutral-900/80 backdrop-blur-xl border border-neutral-800 text-white py-6 px-6 rounded-xl hover:border-tipfinity-primary hover:bg-tipfinity-primary/10 transition-all shadow-lg group"
                             onClick={() => { setActiveTab("sent"); setIsOpen(true); }}
                         >
-                           Tips Sent
+                            <div className="text-lg font-semibold group-hover:text-tipfinity-primary transition-colors">Tips Sent</div>
                         </button>
                         <button
-                            className="bg-tipfinity-dark text-white py-4 px-4 rounded-lg hover:bg-tipfinity-primary transition"
+                            className="bg-neutral-900/80 backdrop-blur-xl border border-neutral-800 text-white py-6 px-6 rounded-xl hover:border-tipfinity-primary hover:bg-tipfinity-primary/10 transition-all shadow-lg group"
                             onClick={() => { setActiveTab("superfan"); setIsOpen(true); }}
                         >
-                            Biggest Fan
+                            <div className="text-lg font-semibold group-hover:text-tipfinity-primary transition-colors">Biggest Fan</div>
                         </button>
                     </div>
 
@@ -134,59 +143,70 @@ export default function Profile() {
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            transition={{ duration: 0.5 }}
-                            className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-[999] flex items-center justify-center"
+                            transition={{ duration: 0.3 }}
+                            className="fixed inset-0 bg-black/70 backdrop-blur-md z-[999] flex items-center justify-center p-4"
+                            onClick={() => setIsOpen(false)}
                         >
-                            <motion.div className="relative bg-black bg-opacity-90 w-full max-w-xl 
-                                        flex flex-col items-center justify-start rounded-lg p-4 text-center 
-                                        overflow-y-auto max-h-[500px] z-[1000] shadow-xl border border-[#FF4D4D] border-opacity-30"
-                                        initial={{ opacity: 0 }}
-                                        animate={{ opacity: 1 }}
-                                        transition={{ duration: 0.5, ease: "easeInOut" }}
+                            <motion.div 
+                                className="relative bg-neutral-900/95 backdrop-blur-xl w-full max-w-xl 
+                                        flex flex-col items-center justify-start rounded-2xl p-6 text-center 
+                                        overflow-y-auto max-h-[500px] z-[1000] shadow-2xl border border-tipfinity-primary/30"
+                                initial={{ scale: 0.9, opacity: 0 }}
+                                animate={{ scale: 1, opacity: 1 }}
+                                transition={{ duration: 0.3, ease: "easeOut" }}
+                                onClick={(e) => e.stopPropagation()}
                             >
                                 <button 
                                     onClick={() => setIsOpen(false)} 
-                                    className="absolute top-4 right-4 text-white/70 hover:text-white bg-neutral-800 hover:bg-[#FF4D4D]
-                                            p-2 rounded-full w-8 h-8 transition duration-300 flex justify-center items-center"
+                                    className="absolute top-4 right-4 text-white/70 hover:text-white bg-neutral-800 hover:bg-tipfinity-primary
+                                            p-2 rounded-full w-9 h-9 transition duration-300 flex justify-center items-center"
                                 >
-                                    <XIcon />
+                                    <XIcon className="h-5 w-5" />
                                 </button>
 
-                                
-                                <div className="text-lg font-semibold text-white/70 mb-4">
+                                <div className="text-xl font-bold text-white mb-6">
                                     {activeTab === "earnings" && "Total Earnings"}
-                                    {activeTab === "received" && "Received Messages"}
-                                    {activeTab === "sent" && "Sent Messages"}
+                                    {activeTab === "received" && "Tips Received"}
+                                    {activeTab === "sent" && "Tips Sent"}
                                     {activeTab === "superfan" && "Biggest Fan"}
                                 </div>
 
-                                <div className="text-white w-full p-4">
+                                <div className="text-white w-full">
                                     {activeTab === "earnings" && (
-                                        <div className="text-2xl font-bold flex justify-center items-center">
-                                            <div className="w-6 h-6 m-3">
-                                                <img src="/solana.svg" className="w-6  h-6" />
+                                        <div className="flex flex-col items-center justify-center bg-neutral-800/50 rounded-xl p-6 border border-neutral-700">
+                                            <div className="text-4xl font-bold text-tipfinity-primary flex items-center gap-2">
+                                                <img src="/solana.svg" className="w-8 h-8" alt="SOL" />
+                                                {totalEarnings.toFixed(2)} 
                                             </div>
-                                            <div className="text-white/70">
-                                            {totalEarnings.toFixed(2)} Sol
-                                            </div>
+                                            <div className="text-white/60 text-sm mt-2">SOL</div>
                                         </div>
                                     )}
                                     {activeTab === "received" && (
-                                        <div className="text-center">
-                                            {receivedMessages.map((msg,idx) => (
-                                                <div key={idx} className="p-2 border border-tipfinity-dark rounded-lg mb-2 hover:bg-tipfinity-dark/50 text-white/70">{msg.message}</div>
-                                            ))}
+                                        <div className="space-y-2 max-h-[350px] overflow-y-auto">
+                                            {receivedMessages.length > 0 ? receivedMessages.map((msg,idx) => (
+                                                <div key={idx} className="p-3 bg-neutral-800/50 border border-neutral-700 rounded-lg hover:border-tipfinity-primary/50 transition-all text-white">
+                                                    {msg.message}
+                                                </div>
+                                            )) : (
+                                                <div className="text-white/60 py-8">No tips received yet</div>
+                                            )}
                                         </div>
                                     )}
                                     {activeTab === "sent" && (
-                                        <div className="text-left">
-                                            {sentMessages.map((msg,idx) => (
-                                                <div key={idx} className="p-2 border-b border-tipfinity-dark/30">{msg.message}</div>
-                                            ))}
+                                        <div className="space-y-2 max-h-[350px] overflow-y-auto">
+                                            {sentMessages.length > 0 ? sentMessages.map((msg,idx) => (
+                                                <div key={idx} className="p-3 bg-neutral-800/50 border border-neutral-700 rounded-lg text-white text-left">
+                                                    {msg.message}
+                                                </div>
+                                            )) : (
+                                                <div className="text-white/60 py-8">No tips sent yet</div>
+                                            )}
                                         </div>
                                     )}
                                     {activeTab === "superfan" && (
-                                        <p className="text-2xl font-bold">{biggestSuperFan || "No fan yet 😢"}</p>
+                                        <div className="bg-neutral-800/50 rounded-xl p-6 border border-neutral-700">
+                                            <p className="text-2xl font-bold text-tipfinity-primary">{biggestSuperFan || "No fan yet 😢"}</p>
+                                        </div>
                                     )}
                                 </div>
                             </motion.div>
@@ -194,7 +214,9 @@ export default function Profile() {
                     )}
                 </div>
             ) : (
-                <div className="flex items-center justify-center h-screen text-white">Connecting Wallet...</div>
+                <div className="flex items-center justify-center h-screen">
+                    <div className="text-white text-xl">Connecting Wallet...</div>
+                </div>
             )}
         </div>
     );
