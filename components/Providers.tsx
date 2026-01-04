@@ -5,9 +5,11 @@ import '@solana/wallet-adapter-react-ui/styles.css';
 
 
 export function Providers({ children }: { children: React.ReactNode }) {
-
+  // DEVNET - Using test/fake SOL for development
+  const endpoint = "https://api.devnet.solana.com";
+  
   return (
-    <ConnectionProvider endpoint='https://api.devnet.solana.com'>
+    <ConnectionProvider endpoint={endpoint}>
       <WalletProvider wallets={[]} autoConnect>
         <WalletModalProvider>{children}</WalletModalProvider>
       </WalletProvider>

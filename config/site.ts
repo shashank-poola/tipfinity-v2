@@ -1,6 +1,7 @@
 export const siteConfig = {
     name: "Tipfinity",
     description: "Tipping on Solana",
+    // DEVNET - Using test/fake SOL network for development
     solanaRpcUrl: "https://api.devnet.solana.com",
     links: {
         portfolio: "https://shasha.ink",

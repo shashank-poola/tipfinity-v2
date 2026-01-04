@@ -77,7 +77,8 @@ export default function CreatorProfile() {
         }
 
         try {
-            const connection = new Connection("https://api.devnet.solana.com");
+            // DEVNET - Using fake/test SOL
+            const connection = new Connection("https://api.devnet.solana.com", "confirmed");
             const transaction = new Transaction().add(
                 SystemProgram.transfer({
                     fromPubkey: wallet.adapter.publicKey,
